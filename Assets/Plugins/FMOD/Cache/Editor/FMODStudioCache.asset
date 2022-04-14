@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: ../../../fmod studio/meditation/Build/Desktop/BG Music.bank
   Name: BG Music
   StudioPath: bank:/BG Music
-  lastModified: 637854891900743481
+  lastModified: 637855108809444756
   FileSizes: []
   Exists: 1
 --- !u!114 &-9091650883452542219
@@ -86,10 +86,10 @@ MonoBehaviour:
   Path: ../../../fmod studio/meditation/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637854891900396885
+  lastModified: 637855108809095420
   FileSizes:
   - Name: 
-    Value: 1354
+    Value: 1392
   Exists: 1
 --- !u!114 &-8383903445130010112
 MonoBehaviour:
@@ -259,7 +259,7 @@ MonoBehaviour:
   Path: ../../../fmod studio/meditation/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637854891900387161
+  lastModified: 637855108809088550
   FileSizes: []
   Exists: 1
 --- !u!114 &-3607078500515807796
@@ -386,6 +386,7 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters:
   - {fileID: -6814280926115671541}
+  - {fileID: 6558961812755475872}
   MinDistance: 1
   MaxDistance: 20
   Length: 70311
@@ -404,7 +405,7 @@ MonoBehaviour:
   Path: ../../../fmod studio/meditation/Build/Desktop/Voice Over.bank
   Name: Voice Over
   StudioPath: bank:/Voice Over
-  lastModified: 637854891901957217
+  lastModified: 637855108810875370
   FileSizes: []
   Exists: 1
 --- !u!114 &-1795359494536835535
@@ -422,7 +423,7 @@ MonoBehaviour:
   Path: ../../../fmod studio/meditation/Build/Desktop/Test.bank
   Name: Test
   StudioPath: bank:/Test
-  lastModified: 637854891902272936
+  lastModified: 637855108811176990
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -455,11 +456,12 @@ MonoBehaviour:
   EditorParameters:
   - {fileID: -5625768410180093895}
   - {fileID: -7042821657276334925}
+  - {fileID: 2919073640638397650}
   MasterBanks:
   - {fileID: -5100371765315875243}
   StringsBanks:
   - {fileID: -8504738762620227117}
-  cacheTime: 637854891902272936
+  cacheTime: 637855108811176990
   cacheVersion: 10
 --- !u!114 &393006428301564770
 MonoBehaviour:
@@ -509,6 +511,30 @@ MonoBehaviour:
   ID:
     data1: 879002248
     data2: 429438395
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &2919073640638397650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/isTracking
+  m_EditorClassIdentifier: 
+  Name: isTracking
+  StudioPath: parameter:/isTracking
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2571794564
+    data2: 3030090502
   Type: 1
   IsGlobal: 1
   Labels: []
@@ -565,6 +591,30 @@ MonoBehaviour:
   MinDistance: 1.4
   MaxDistance: 100
   Length: 0
+--- !u!114 &6558961812755475872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/intro/isTracking
+  m_EditorClassIdentifier: 
+  Name: isTracking
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2571794564
+    data2: 3030090502
+  Type: 1
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &7230001905790777515
 MonoBehaviour:
   m_ObjectHideFlags: 0
