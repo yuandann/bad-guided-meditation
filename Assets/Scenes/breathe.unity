@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 456286595}
-  m_IndirectSpecularColor: {r: 0.5518105, g: 0.6068164, b: 0.9802336, a: 1}
+  m_IndirectSpecularColor: {r: 0.61607486, g: 0.6068164, b: 0.9802336, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -907,87 +907,15 @@ GameObject:
   m_Component:
   - component: {fileID: 765527880}
   - component: {fileID: 765527879}
-  - component: {fileID: 765527878}
-  - component: {fileID: 765527877}
+  - component: {fileID: 765527882}
+  - component: {fileID: 765527881}
   m_Layer: 0
   m_Name: KinectManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &765527877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765527876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29735fcf935e5f94a9473917f381f6b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  draggableObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  selectedObjectMaterial: {fileID: 0}
-  dragSpeed: 3
-  minZ: 0
-  maxZ: 5
-  useGravity: 1
-  resetObjects: 0
-  screenCamera: {fileID: 0}
-  infoGuiText: {fileID: 0}
-  playerIndex: 0
-  leftHandInteraction: 1
-  rightHandInteraction: 1
---- !u!114 &765527878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765527876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a669d15f0035bbf4889c8092b5bcd201, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 0
-  leftHandInteraction: 1
-  rightHandInteraction: 1
-  guiHandCursor: {fileID: 0}
-  gripHandTexture: {fileID: 21300000, guid: a4f2a761acb368e4dbf8ac95254eb8ec, type: 3}
-  releaseHandTexture: {fileID: 21300000, guid: 35af1bb16b25df24ab6e5c1b4952f337, type: 3}
-  normalHandTexture: {fileID: 21300000, guid: 35af1bb16b25df24ab6e5c1b4952f337, type: 3}
-  handOverlayCursor: 1
-  smoothFactor: 10
-  allowHandClicks: 0
-  allowPushToClick: 0
-  controlMouseCursor: 1
-  controlMouseDrag: 1
-  interactionListeners: []
-  debugText: {fileID: 0}
+  m_IsActive: 1
 --- !u!114 &765527879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,6 +979,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765527881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765527876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fdf5747dead124b83bd2ec3ce94084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breathingTracker: {fileID: 765527882}
+--- !u!114 &765527882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765527876}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 046e768f7c1e3584c90fe1699e687b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spineShoulderVal: {fileID: 765527881}
+  estChange: 0
+  initTimer: 4
 --- !u!1 &1041242962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,8 +1602,7 @@ MonoBehaviour:
   streamSource: 1
   streamDescriptor: {fileID: 0}
   embeddedStreamDescriptor:
-    pathToAbc: /Users/sarahpeng/Documents/unity/projects/guided-meditation-but-bad/Assets/3D
-      Models/inflate.abc
+    pathToAbc: C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/deflate-a.abc
     settings:
       normals: 1
       tangents: 1
@@ -1708,11 +1663,7 @@ MonoBehaviour:
   exhaleEmitter: {fileID: 1054720864}
   outroEmitter: {fileID: 65438592}
   path:
-  - /Users/sarahpeng/Documents/unity/projects/guided-meditation-but-bad/Assets/3D
-    Models/deflate-a.abc
-  - /Users/sarahpeng/Documents/unity/projects/guided-meditation-but-bad/Assets/3D
-    Models/inflate.abc
-  - /Users/sarahpeng/Documents/unity/projects/guided-meditation-but-bad/Assets/3D
-    Models/inflate-end.abc
-  - /Users/sarahpeng/Documents/unity/projects/guided-meditation-but-bad/Assets/3D
-    Models/pop.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/deflate-a.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate_end.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/pop.abc

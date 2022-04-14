@@ -9,6 +9,9 @@ public class InflateDeflate : MonoBehaviour
     private AlembicStreamPlayer player;
     private Animator animator;
 
+    private float isEndingValue;
+    private float isStartedValue;
+
     [SerializeField]
     private StudioEventEmitter inhaleEmitter, exhaleEmitter, outroEmitter;
 
@@ -27,40 +30,12 @@ public class InflateDeflate : MonoBehaviour
     void Update()
     {
         var fmodSystem = RuntimeManager.StudioSystem;
-        fmodSystem.getParameterByName("isEnding", out float f1, out float isEndingValue);
-        fmodSystem.getParameterByName("isStarted", out float f2, out float isStartedValue);
 
-        if (isEndingValue == 0 && isStartedValue == 1)
-        {
+        fmodSystem.getParameterByName("isEnding", out float f1, out float out1);
+        fmodSystem.getParameterByName("isStarted", out float f2, out float out2);
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (animator.GetBool("isStarted") == false)
-                {
-                    animator.SetBool("isStarted", true);
-                }
-
-                BreathingEvents.current.Inhale();
-            }
-
-            else if (Input.GetKeyUp(KeyCode.Space))
-                //Deflate();
-                BreathingEvents.current.Exhale();
-        }
-
-        else if (isEndingValue == 1)
-        {
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                animator.SetBool("isEnding", true);
-                animator.SetBool("isInhale", false);
-                animator.SetBool("isExhale", false);
-                animator.SetBool("isStarted", false);
-                outroEmitter.Play();
-            }
-                
-        }
+        isEndingValue = out1;
+        isStartedValue = out2;
 
         if (Input.GetKeyDown(KeyCode.R))
             Reset();
@@ -68,18 +43,36 @@ public class InflateDeflate : MonoBehaviour
 
     private void Deflate()
     {
-        //player.LoadFromFile(path[0]);
-        animator.SetBool("isInhale", false);
-        animator.SetBool("isExhale", true);
-        exhaleEmitter.Play();
+        if (isEndingValue == 0 && isStartedValue == 1)
+        {
+            animator.SetBool("isInhale", false);
+            animator.SetBool("isExhale", true);
+            exhaleEmitter.Play();
+        }
     }
 
     private void Inflate()
     {
-        //player.LoadFromFile(path[1]);
-        animator.SetBool("isExhale", false);
-        animator.SetBool("isInhale", true);
-        inhaleEmitter.Play();
+        if (isEndingValue == 0 && isStartedValue == 1)
+        {
+            if (animator.GetBool("isStarted") == false)
+                animator.SetBool("isStarted", true);
+            else
+            {
+                animator.SetBool("isExhale", false);
+                animator.SetBool("isInhale", true);
+                inhaleEmitter.Play();
+            }
+        }
+
+        else if (isEndingValue == 1)
+        {
+            animator.SetBool("isEnding", true);
+            animator.SetBool("isInhale", false);
+            animator.SetBool("isExhale", false);
+            animator.SetBool("isStarted", false);
+            outroEmitter.Play();
+        }
     }
 
     private void Reset()
