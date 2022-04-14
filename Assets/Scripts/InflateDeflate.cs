@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Formats.Alembic.Importer;
+using FMODUnity;
 
 public class InflateDeflate : MonoBehaviour
 {
     private AlembicStreamPlayer player;
     private Animator animator;
-    float speed;
+
+    [SerializeField]
+    private StudioEventEmitter inhaleEmitter, exhaleEmitter, outroEmitter;
 
     public string[] path;
 
@@ -16,25 +19,51 @@ public class InflateDeflate : MonoBehaviour
     {
         player = GetComponent<AlembicStreamPlayer>();
         animator = GetComponent<Animator>();
-        speed = 0f;
+
+        BreathingEvents.current.onInhale += Inflate;
+        BreathingEvents.current.onExhale += Deflate;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        var fmodSystem = RuntimeManager.StudioSystem;
+        fmodSystem.getParameterByName("isEnding", out float f1, out float isEndingValue);
+        fmodSystem.getParameterByName("isStarted", out float f2, out float isStartedValue);
+
+        if (isEndingValue == 0 && isStartedValue == 1)
         {
-            if (animator.GetBool("isStarted") == false)
-                animator.SetBool("isStarted", true);
-            else
-                Inflate();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (animator.GetBool("isStarted") == false)
+                {
+                    animator.SetBool("isStarted", true);
+                }
+
+                BreathingEvents.current.Inhale();
+            }
+
+            else if (Input.GetKeyUp(KeyCode.Space))
+                //Deflate();
+                BreathingEvents.current.Exhale();
         }
 
-        else if (Input.GetKeyUp(KeyCode.Space))
-            Deflate();
+        else if (isEndingValue == 1)
+        {
 
-        //if(player.CurrentTime < player.EndTime || player.CurrentTime > player.StartTime)
-            //player.CurrentTime += speed * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                animator.SetBool("isEnding", true);
+                animator.SetBool("isInhale", false);
+                animator.SetBool("isExhale", false);
+                animator.SetBool("isStarted", false);
+                outroEmitter.Play();
+            }
+                
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+            Reset();
     }
 
     private void Deflate()
@@ -42,6 +71,7 @@ public class InflateDeflate : MonoBehaviour
         //player.LoadFromFile(path[0]);
         animator.SetBool("isInhale", false);
         animator.SetBool("isExhale", true);
+        exhaleEmitter.Play();
     }
 
     private void Inflate()
@@ -49,6 +79,16 @@ public class InflateDeflate : MonoBehaviour
         //player.LoadFromFile(path[1]);
         animator.SetBool("isExhale", false);
         animator.SetBool("isInhale", true);
+        inhaleEmitter.Play();
+    }
+
+    private void Reset()
+    {
+        animator.SetBool("isStarting", false);
+        animator.SetBool("isEnd", false);
+        animator.SetBool("isReset", true);
+        BreathingEvents.current.onInhale += Inflate;
+        BreathingEvents.current.onExhale += Deflate;
     }
 
     public void LoadFile(int fileID)

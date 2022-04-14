@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine;
+    using UnityEditor;
 
 
     public class BackgroundShift : MonoBehaviour
@@ -10,39 +10,94 @@ using UnityEditor;
         [SerializeField]
         private Material background;
 
-        [SerializeField]
-        private Color32 color1, color2;
-        private Color32 startCol1, startCol2;
+        private Color32 color1 = new Color32(215, 189, 255, 255);
+        private Color32 color2 = new Color32(140, 84, 245, 255);
 
-        [SerializeField]
-        private float pitch = 140, yaw = 180;
-        
-        // Start is called before the first frame update
-        void Awake()
-        {
+        private Color32 altColor1;
+        private Color32 altColor2;
 
-        color1 = new Color32(227, 189, 255, 255);
-        color2 = new Color32(144, 117, 245, 255);
+        private Color32 initColor1;
+        private Color32 initColor2;
+
+        private Color32 lerpedColor1;
+        private Color32 lerpedColor2;
+
+        public float lerpTime;
+
+    // Start is called before the first frame update
+    void Start()
+    {
 
         background.SetColor("_Color1", color1);
         background.SetColor("_Color2", color2);
-        background.SetFloat("_DirY", pitch);
-        background.SetFloat("_DirX", yaw);
 
-        }
+        lerpedColor1 = color1;
+        lerpedColor2 = color2;
+        initColor1 = color1;
+        initColor2 = color2;
+
+        BreathingEvents.current.onInhale += ShiftPink;
+        BreathingEvents.current.onExhale += ShiftBlue;
+
+    }
 
         // Update is called once per frame
-        void Update()
+    void Update()
+    {
+        background.SetColor("_Color1", lerpedColor1);
+        background.SetColor("_Color2", lerpedColor2);
+    }
+
+
+    private void ShiftPink()
+    { 
+       altColor1 = new Color32(230, 189, 255, 255);
+       altColor2 = new Color32(180, 117, 245, 255);
+       StartCoroutine(LerpColor());
+    }
+
+    private void ShiftBlue()
+    {
+       altColor1 = new Color32(192, 189, 255, 255);
+       altColor2 = new Color32(80, 117, 245, 255);
+       StartCoroutine(LerpColor());
+    }
+
+    private IEnumerator LerpColor()
+    {
+        var t = 0f;
+
+        while (t < lerpTime)
         {
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            background.SetColor("_Color1", color1);
-            background.SetColor("_Color2", color2);
-            background.SetFloat("_DirY", pitch);
-            background.SetFloat("_DirX", yaw);
+            t += Time.deltaTime;
+            lerpedColor1 = Color32.Lerp(initColor1, altColor1, t / lerpTime);
+            lerpedColor2 = Color32.Lerp(initColor2, altColor2, t / lerpTime);
+            yield return null;
         }
+        initColor1 = altColor1;
+        initColor2 = altColor2;
+    }
 
 
-        }
+    //private IEnumerator RampUp(string param, float startValue, float endValue, float fadeTime)
+    //{
+
+    //    while (startValue < endValue)
+    //    {
+    //        startValue += Time.deltaTime / fadeTime;
+    //        background.SetFloat(param,startValue);
+    //        yield return null;
+    //    }
+    //}
+
+    //private IEnumerator RampDown(string param, float startValue, float endValue, float fadeTime)
+    //    {
+    //        while (startValue > endValue)
+    //        {
+    //            startValue -= startValue * Time.deltaTime / fadeTime;
+    //            background.SetFloat(param, startValue);
+    //            yield return null;
+    //        }
+    //    }
+
     }

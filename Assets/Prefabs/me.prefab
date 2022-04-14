@@ -87,7 +87,7 @@ MonoBehaviour:
   streamSource: 1
   streamDescriptor: {fileID: 0}
   embeddedStreamDescriptor:
-    pathToAbc: /Users/sarahpeng/Documents/unity/projects/guided meditation but bad/Assets/3D
+    pathToAbc: /Users/sarahpeng/Documents/unity/projects/guided-meditation-but-bad/Assets/3D
       Models/inflate.abc
     settings:
       normals: 1
