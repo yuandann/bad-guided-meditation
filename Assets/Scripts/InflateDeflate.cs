@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Formats.Alembic.Importer;
 using FMODUnity;
+using UnityEngine.SceneManagement;
 
 public class InflateDeflate : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class InflateDeflate : MonoBehaviour
     private StudioEventEmitter inhaleEmitter, exhaleEmitter, outroEmitter;
 
     public string[] path;
+
+    [SerializeField]
+    private bool inOutToggle = false;
 
     // Start is called before the first frame update
     void Start()
@@ -43,11 +47,16 @@ public class InflateDeflate : MonoBehaviour
 
     private void Deflate()
     {
-        if (isEndingValue == 0 && isStartedValue == 1)
+        if (inOutToggle)
         {
-            animator.SetBool("isInhale", false);
-            animator.SetBool("isExhale", true);
-            exhaleEmitter.Play();
+            if (isEndingValue == 0 && isStartedValue == 1)
+            {
+                animator.SetBool("isInhale", false);
+                animator.SetBool("isExhale", true);
+                if (exhaleEmitter != null)
+                    exhaleEmitter.Play();
+                inOutToggle = !inOutToggle;
+            }
         }
     }
 
@@ -55,13 +64,16 @@ public class InflateDeflate : MonoBehaviour
     {
         if (isEndingValue == 0 && isStartedValue == 1)
         {
+            inOutToggle = !inOutToggle;
+            if(inhaleEmitter != null)
+                inhaleEmitter.Play();
+
             if (animator.GetBool("isStarted") == false)
                 animator.SetBool("isStarted", true);
             else
             {
                 animator.SetBool("isExhale", false);
                 animator.SetBool("isInhale", true);
-                inhaleEmitter.Play();
             }
         }
 
@@ -77,11 +89,7 @@ public class InflateDeflate : MonoBehaviour
 
     private void Reset()
     {
-        animator.SetBool("isStarting", false);
-        animator.SetBool("isEnd", false);
-        animator.SetBool("isReset", true);
-        BreathingEvents.current.onInhale += Inflate;
-        BreathingEvents.current.onExhale += Deflate;
+      SceneManager.LoadScene(0);
     }
 
     public void LoadFile(int fileID)

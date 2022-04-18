@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using FMODUnity;
 
 public class SpineShoulderTrack : MonoBehaviour 
 {
@@ -19,18 +20,20 @@ public class SpineShoulderTrack : MonoBehaviour
 
 	void Update() 
 	{
-
-		// get the joint position
 		KinectManager manager = KinectManager.Instance;
 
-		if(manager && manager.IsInitialized())
+		var fmodSystem = RuntimeManager.StudioSystem;
+		fmodSystem.getParameterByName("isTracking", out float f, out float isTrackingValue);
+
+		if (manager && manager.IsInitialized())
 		{
 			if(manager.IsUserDetected(playerIndex))
 			{
 				long userId = manager.GetUserIdByIndex(playerIndex);
-				breathingTracker.enabled = true;
+				if (isTrackingValue == 1)
+					breathingTracker.enabled = true;
 
-				if(manager.IsJointTracked(userId, (int)joint))
+				if (manager.IsJointTracked(userId, (int)joint))
 				{
 					// output the joint position for easy tracking
 					Vector3 jointPos = manager.GetJointPosition(userId, (int)joint);
@@ -39,6 +42,9 @@ public class SpineShoulderTrack : MonoBehaviour
 			}
 		}
 
+		
+
+	
 	}
 
 }

@@ -17,13 +17,18 @@ public class BreathingTracker: MonoBehaviour
     private float initTimer;
     private float timer;
 
+    [SerializeField]
+    private bool canTriggerInhale = true;
+    [SerializeField]
+    private bool canTriggerExhale = false;
+
     void Start()
     {
        StartCoroutine(TimedCalculation());
        timer = initTimer;
     }
     
-    void LateUpdate()
+    void Update()
     {
         yPos = spineShoulderVal.jointPosition.y;
         var yPosDelta = yPos - initYPos;
@@ -34,13 +39,17 @@ public class BreathingTracker: MonoBehaviour
         {
             timer = initTimer;
 
-            if (yPosDelta > estChange)
+            if (yPosDelta > estChange && canTriggerInhale)
             {
                 BreathingEvents.current.Inhale();
+                canTriggerInhale = false;
+                canTriggerExhale = true;
             }
-            else if (yPosDelta < estChange)
+            else if (yPosDelta < estChange && canTriggerExhale)
             {
                 BreathingEvents.current.Exhale();
+                canTriggerExhale = false;
+                canTriggerInhale = true;
             }
         }
 

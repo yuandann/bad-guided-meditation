@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 456286595}
-  m_IndirectSpecularColor: {r: 0.61607486, g: 0.6068164, b: 0.9802336, a: 1}
+  m_IndirectSpecularColor: {r: 0.7025097, g: 0.5515006, b: 0.9802336, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -933,10 +933,10 @@ MonoBehaviour:
   autoHeightAngle: 0
   computeUserMap: 1
   computeColorMap: 1
-  computeInfraredMap: 0
+  computeInfraredMap: 1
   displayUserMap: 0
-  displayColorMap: 1
-  displaySkeletonLines: 1
+  displayColorMap: 0
+  displaySkeletonLines: 0
   DisplayMapsWidthPercent: 20
   useMultiSourceReader: 0
   minUserDistance: 0.5
@@ -1006,7 +1006,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spineShoulderVal: {fileID: 765527881}
   estChange: 0
-  initTimer: 4
+  initTimer: 0
+  canTriggerInhale: 1
+  canTriggerExhale: 0
 --- !u!1 &1041242962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1604,7 @@ MonoBehaviour:
   streamSource: 1
   streamDescriptor: {fileID: 0}
   embeddedStreamDescriptor:
-    pathToAbc: C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/deflate-a.abc
+    pathToAbc: Assets/3D Models/inflate.abc
     settings:
       normals: 1
       tangents: 1
@@ -1663,7 +1665,8 @@ MonoBehaviour:
   exhaleEmitter: {fileID: 1054720864}
   outroEmitter: {fileID: 65438592}
   path:
-  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/deflate-a.abc
-  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate.abc
-  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate_end.abc
-  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/pop.abc
+  - Assets/3D Models/deflate-a.abc
+  - Assets/3D Models/inflate.abc
+  - Assets/3D Models/inflate-end.abc
+  - Assets/3D Models/pop.abc
+  inOutToggle: 0

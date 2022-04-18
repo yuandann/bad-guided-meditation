@@ -2,27 +2,28 @@
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEditor;
+    using FMODUnity;
 
 
-    public class BackgroundShift : MonoBehaviour
-    {
+public class BackgroundShift : MonoBehaviour
+{
 
-        [SerializeField]
-        private Material background;
+    [SerializeField]
+    private Material background;
 
-        private Color32 color1 = new Color32(215, 189, 255, 255);
-        private Color32 color2 = new Color32(140, 84, 245, 255);
+    private Color32 color1 = new Color32(215, 189, 255, 255);
+    private Color32 color2 = new Color32(140, 84, 245, 255);
 
-        private Color32 altColor1;
-        private Color32 altColor2;
+    private Color32 altColor1;
+    private Color32 altColor2;
 
-        private Color32 initColor1;
-        private Color32 initColor2;
+    private Color32 initColor1;
+    private Color32 initColor2;
 
-        private Color32 lerpedColor1;
-        private Color32 lerpedColor2;
+    private Color32 lerpedColor1;
+    private Color32 lerpedColor2;
 
-        public float lerpTime;
+    public float lerpTime;
 
     // Start is called before the first frame update
     void Start()
@@ -41,26 +42,32 @@
 
     }
 
-        // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
-        background.SetColor("_Color1", lerpedColor1);
-        background.SetColor("_Color2", lerpedColor2);
+        var fmodSystem = RuntimeManager.StudioSystem;
+        fmodSystem.getParameterByName("isTracking", out float f1, out float isTrackingValue);
+        fmodSystem.getParameterByName("isEnding", out float f2, out float isEndingValue);
+        if (isTrackingValue == 1 && isEndingValue == 0)
+        {
+            background.SetColor("_Color1", lerpedColor1);
+            background.SetColor("_Color2", lerpedColor2);
+        }
     }
 
 
     private void ShiftPink()
-    { 
-       altColor1 = new Color32(230, 189, 255, 255);
-       altColor2 = new Color32(180, 117, 245, 255);
-       StartCoroutine(LerpColor());
+    {
+        altColor1 = new Color32(230, 189, 255, 255);
+        altColor2 = new Color32(180, 117, 245, 255);
+        StartCoroutine(LerpColor());
     }
 
     private void ShiftBlue()
     {
-       altColor1 = new Color32(192, 189, 255, 255);
-       altColor2 = new Color32(80, 117, 245, 255);
-       StartCoroutine(LerpColor());
+        altColor1 = new Color32(192, 189, 255, 255);
+        altColor2 = new Color32(80, 117, 245, 255);
+        StartCoroutine(LerpColor());
     }
 
     private IEnumerator LerpColor()
@@ -74,30 +81,11 @@
             lerpedColor2 = Color32.Lerp(initColor2, altColor2, t / lerpTime);
             yield return null;
         }
+
         initColor1 = altColor1;
         initColor2 = altColor2;
     }
+}
 
 
-    //private IEnumerator RampUp(string param, float startValue, float endValue, float fadeTime)
-    //{
-
-    //    while (startValue < endValue)
-    //    {
-    //        startValue += Time.deltaTime / fadeTime;
-    //        background.SetFloat(param,startValue);
-    //        yield return null;
-    //    }
-    //}
-
-    //private IEnumerator RampDown(string param, float startValue, float endValue, float fadeTime)
-    //    {
-    //        while (startValue > endValue)
-    //        {
-    //            startValue -= startValue * Time.deltaTime / fadeTime;
-    //            background.SetFloat(param, startValue);
-    //            yield return null;
-    //        }
-    //    }
-
-    }
+  
