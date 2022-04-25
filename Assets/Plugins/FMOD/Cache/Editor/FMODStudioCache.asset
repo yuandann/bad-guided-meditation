@@ -68,7 +68,7 @@ MonoBehaviour:
   Path: Assets/FMOD Builds/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637855856973004687
+  lastModified: 637864480907535062
   FileSizes: []
   Exists: 1
 --- !u!114 &-8383903445130010112
@@ -316,7 +316,7 @@ MonoBehaviour:
   Path: Assets/FMOD Builds/Desktop/Voice Over.bank
   Name: Voice Over
   StudioPath: bank:/Voice Over
-  lastModified: 637855856975582915
+  lastModified: 637864480907814579
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -354,7 +354,7 @@ MonoBehaviour:
   - {fileID: -8692631256994295471}
   StringsBanks:
   - {fileID: 8281274510875755192}
-  cacheTime: 637855856975582915
+  cacheTime: 637864480907814579
   cacheVersion: 10
 --- !u!114 &393006428301564770
 MonoBehaviour:
@@ -399,7 +399,7 @@ MonoBehaviour:
   Path: Assets/FMOD Builds/Desktop/Test.bank
   Name: Test
   StudioPath: bank:/Test
-  lastModified: 637855856973413599
+  lastModified: 637864480907558421
   FileSizes: []
   Exists: 1
 --- !u!114 &3269267893883760231
@@ -417,7 +417,7 @@ MonoBehaviour:
   Path: Assets/FMOD Builds/Desktop/BG Music.bank
   Name: BG Music
   StudioPath: bank:/BG Music
-  lastModified: 637855856972944858
+  lastModified: 637864480907491922
   FileSizes: []
   Exists: 1
 --- !u!114 &4414510366743717461
@@ -637,7 +637,7 @@ MonoBehaviour:
   Path: Assets/FMOD Builds/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637855856973024638
+  lastModified: 637864480907536362
   FileSizes:
   - Name: 
     Value: 1392
