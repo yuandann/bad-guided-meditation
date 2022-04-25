@@ -937,7 +937,7 @@ MonoBehaviour:
   displayUserMap: 0
   displayColorMap: 0
   displaySkeletonLines: 0
-  DisplayMapsWidthPercent: 20
+  DisplayMapsWidthPercent: 30
   useMultiSourceReader: 0
   minUserDistance: 0.5
   maxUserDistance: 0
@@ -992,6 +992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breathingTracker: {fileID: 765527882}
+  introEmitter: {fileID: 1086654169}
 --- !u!114 &765527882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,9 +1007,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spineShoulderVal: {fileID: 765527881}
   estChange: 0
-  initTimer: 0
-  canTriggerInhale: 1
-  canTriggerExhale: 0
 --- !u!1 &1041242962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1189,7 @@ MonoBehaviour:
       Data4: 1861966799
     Path: event:/intro
   Event: 
-  PlayEvent: 1
+  PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 1
@@ -1410,7 +1408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 2100000, guid: b42cd070feda34d84b46fb7d743d7799, type: 2}
-  lerpTime: 2
+  lerpTime: 1
 --- !u!4 &1398122618
 Transform:
   m_ObjectHideFlags: 0
@@ -1604,7 +1602,7 @@ MonoBehaviour:
   streamSource: 1
   streamDescriptor: {fileID: 0}
   embeddedStreamDescriptor:
-    pathToAbc: Assets/3D Models/inflate.abc
+    pathToAbc: C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate.abc
     settings:
       normals: 1
       tangents: 1
@@ -1665,8 +1663,8 @@ MonoBehaviour:
   exhaleEmitter: {fileID: 1054720864}
   outroEmitter: {fileID: 65438592}
   path:
-  - Assets/3D Models/deflate-a.abc
-  - Assets/3D Models/inflate.abc
-  - Assets/3D Models/inflate-end.abc
-  - Assets/3D Models/pop.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/deflate-a.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/inflate-end.abc
+  - C:/Users/speng/Documents/bad-guided-meditation/Assets/3D Models/pop.abc
   inOutToggle: 0

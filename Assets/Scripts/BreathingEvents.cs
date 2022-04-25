@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BreathingEvents : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class BreathingEvents : MonoBehaviour
     {
         current = this;
     }
+
 
     public event Action onInhale;
     public void Inhale()

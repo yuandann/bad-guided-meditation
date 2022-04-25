@@ -25,13 +25,10 @@ public class BackgroundShift : MonoBehaviour
 
     public float lerpTime;
 
-    // Start is called before the first frame update
     void Start()
     {
-
         background.SetColor("_Color1", color1);
         background.SetColor("_Color2", color2);
-
         lerpedColor1 = color1;
         lerpedColor2 = color2;
         initColor1 = color1;

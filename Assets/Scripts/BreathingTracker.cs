@@ -13,19 +13,13 @@ public class BreathingTracker: MonoBehaviour
 
     [SerializeField]
     private float estChange;
-    [SerializeField]
-    private float initTimer;
-    private float timer;
 
-    [SerializeField]
     private bool canTriggerInhale = true;
-    [SerializeField]
     private bool canTriggerExhale = false;
 
     void Start()
     {
        StartCoroutine(TimedCalculation());
-       timer = initTimer;
     }
     
     void Update()
@@ -33,33 +27,39 @@ public class BreathingTracker: MonoBehaviour
         yPos = spineShoulderVal.jointPosition.y;
         var yPosDelta = yPos - initYPos;
 
-        timer -= Time.deltaTime;
-
-        if (estChange > 0 && timer <= 0)
+        if (estChange > 0)
         {
-            timer = initTimer;
-
             if (yPosDelta > estChange && canTriggerInhale)
             {
                 BreathingEvents.current.Inhale();
                 canTriggerInhale = false;
                 canTriggerExhale = true;
+                Debug.Log(yPosDelta);
             }
-            else if (yPosDelta < estChange && canTriggerExhale)
+            if (yPosDelta < estChange && canTriggerExhale)
             {
                 BreathingEvents.current.Exhale();
                 canTriggerExhale = false;
                 canTriggerInhale = true;
+                StartCoroutine(SetInitPos());
             }
+
+            if (yPos < initYPos)
+                initYPos = yPos;
         }
 
     }
 
     private IEnumerator TimedCalculation()
     {
-        var initJointPos = spineShoulderVal.jointPosition;
-        initYPos = initJointPos.y;
-        yield return new WaitForSeconds(4f);
-        estChange = yPos - initYPos;
+        initYPos = spineShoulderVal.jointPosition.y;
+        yield return new WaitForSeconds(1f);
+        estChange = Mathf.Abs(yPos - initYPos);
+    }
+    private IEnumerator SetInitPos()
+    {
+        yield return new WaitForSeconds(2f);
+        initYPos = spineShoulderVal.jointPosition.y;
+        Debug.Log(initYPos);
     }
 }

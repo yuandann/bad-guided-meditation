@@ -12,11 +12,7 @@ public class SpineShoulderTrack : MonoBehaviour
 
 	public BreathingTracker breathingTracker;
 
-	void Start()
-	{
-		
-	}
-
+	public StudioEventEmitter introEmitter;
 
 	void Update() 
 	{
@@ -30,6 +26,7 @@ public class SpineShoulderTrack : MonoBehaviour
 			if(manager.IsUserDetected(playerIndex))
 			{
 				long userId = manager.GetUserIdByIndex(playerIndex);
+				introEmitter.Play();
 				if (isTrackingValue == 1)
 					breathingTracker.enabled = true;
 

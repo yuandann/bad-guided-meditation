@@ -53,8 +53,7 @@ public class InflateDeflate : MonoBehaviour
             {
                 animator.SetBool("isInhale", false);
                 animator.SetBool("isExhale", true);
-                if (exhaleEmitter != null)
-                    exhaleEmitter.Play();
+                exhaleEmitter.Play();
                 inOutToggle = !inOutToggle;
             }
         }
@@ -65,8 +64,7 @@ public class InflateDeflate : MonoBehaviour
         if (isEndingValue == 0 && isStartedValue == 1)
         {
             inOutToggle = !inOutToggle;
-            if(inhaleEmitter != null)
-                inhaleEmitter.Play();
+            inhaleEmitter.Play();
 
             if (animator.GetBool("isStarted") == false)
                 animator.SetBool("isStarted", true);
